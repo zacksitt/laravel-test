@@ -101,7 +101,7 @@ class EventsController extends BaseController
      */
 
     public function getEventsWithWorkshops() {
-        
+
         $events = Event::get();
         return $events;
         //throw new \Exception('implement in coding task 1');
@@ -183,6 +183,12 @@ class EventsController extends BaseController
      */
 
     public function getFutureEventsWithWorkshops() {
-        throw new \Exception('implement in coding task 2');
+        
+        $curtime = Carbon\Carbon::now();
+        $curtime->toDateTimeString();
+        return $this->hasMany(Workshop::class, 'event_id',"id")
+                ->where("workshops.start",">",$mytime);
+
+                //throw new \Exception('implement in coding task 2');
     }
 }
